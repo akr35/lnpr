@@ -19,7 +19,7 @@ import numpy as np
 
 # %%
 class World:
-    def __init__(self, time_span, time_interval, debug=False):
+    def __init__(self, time_span: float, time_interval: float, debug=False):
         self.objects = []
         self.debug = debug
         self.time_span = time_span
@@ -65,8 +65,18 @@ class World:
 
 
 # %%
+class Agent:
+    def __init__(self, nu, omega) -> None:
+        self.nu = nu
+        self.omega = omega
+
+    def decision(self, observation=None):
+        return self.nu, self.omega
+
+
+# %%
 class IdealRobot:
-    def __init__(self, pose, agent=None, sensor=None, color="black") -> None:
+    def __init__(self, pose, agent: Agent = None, sensor=None, color="black") -> None:
         self.pose = pose
         self.r = 0.2
         self.color = color
@@ -116,16 +126,6 @@ class IdealRobot:
                     omega * time,
                 ]
             )
-
-
-# %%
-class Agent:
-    def __init__(self, nu, omega) -> None:
-        self.nu = nu
-        self.omega = omega
-
-    def decision(self, observation=None):
-        return self.nu, self.omega
 
 
 # %%
